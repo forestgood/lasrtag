@@ -5,14 +5,29 @@ describe "Static pages" do
   subject { page }
 
   describe "Home page" do
-  	before { visit '/static_pages/home' }
+  	before { visit root_path }
   	it { should have_selector('h1', text: 'Lasrtag') }
-  	it { should have_selector('title', text: 'Lasrtag | Home') }
+  	it { should have_selector('title', text: 'Lasrtag') }
+    it { should_not have_selector('title', text: '| Home') }
   end
 
   describe "Help page" do
-  	before { visit '/static_pages/help' }
+  	before { visit help_path }
   	it { should have_selector('h1', text: 'Help') }
   	it { should have_selector('title', text: 'Lasrtag | Help') }
   end
+
+  describe "About page" do
+    before { visit about_path }
+    it { should have_selector('h1', text: 'About') }
+    it { should have_selector('title', text: 'Lasrtag | About') }
+  end
+
+  describe "Contact page" do
+    before { visit contact_path }
+    it { should have_selector('h1', text: 'Contact') }
+    it { should have_selector('title', text: 'Lasrtag | Contact') }
+  end
+
+
 end
